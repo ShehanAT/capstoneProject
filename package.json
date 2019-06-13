@@ -1,0 +1,23 @@
+{
+  "name": "capstoneproject",
+  "version": "1.0.0",
+  "description": "TeamTreehouse Full Stack Javascript Techdegree Project 12",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShehanAT/capstoneProject.git"
+  },
+  "keywords": [
+    "mean",
+    "stack"
+  ],
+  "author": "Shehan Atuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShehanAT/capstoneProject/issues"
+  },
+  "homepage": "https://github.com/ShehanAT/capstoneProject#readme"
+}
