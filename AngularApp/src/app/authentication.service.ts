@@ -21,7 +21,9 @@ interface TokenResponse {
 export interface TokenPayload{
     username: string;
     password: string;
+    fullName?: string;
     emailAddress?: string;
+    age?: string;
 }
 
 @Injectable()
@@ -67,7 +69,7 @@ export class AuthenticationService {
     private request(method: 'post'|'get', type:'login'|'register'|'profile', user?: TokenPayload): Observable<any>{
         let base;//
         if(method === 'post'){
-            base = this.http.post(`/api/{$type}`, user);//posting request to login, register or profile depending on the $type
+            base = this.http.post(`/api/${type}`, user);//posting request to login, register or profile depending on the $type
             
         }else{//if not post, it is a get request
             base = this.http.get(`/api/${type}`, { headers: {Authorization: `Bearer ${this.getToken()}`}});//sending encrypted password as value

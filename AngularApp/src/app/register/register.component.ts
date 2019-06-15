@@ -1,41 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
-import { NgForm } from '@angular/forms';
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+import { Router } from '@angular/router';
 
-declare var M: any;
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [UserService]
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private userService: UserService) { }
+  credentials: TokenPayload = {//filling out an empty tokenpayload by default
+    username: '',
+    password: '',
+    fullName: '',
+    emailAddress: '',
+    age: ''
+  }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.resetForm();
+  
+  }
+  
+  register(){
+    this.auth.register(this.credentials).subscribe(() => {
+        this.router.navigateByUrl('/profile');//redirect to profile page once 
+        //registered
+    }, (err) => {
+        console.error(err);
+    });
+  
   }
 
-  resetForm(form?: NgForm){
-  	if(form){
-  		form.reset();
-  	}
-  	this.userService.selectedUser = {
-  		_id: "",
-  		username: "",
-  		fullName: "",
-  		age: 0,
-  		emailAddress: "",
-  		password: ""
-  	}
   }
 
-    onSubmit(form: NgForm){
-  	this.userService.postUser(form.value).subscribe((res) => {
-  		this.resetForm(form);
-  		M.toast({ html: 'Saved successfully', classes: 'rounded'});
-  	});
-  }
 
-}

@@ -6,13 +6,13 @@
           <li><a routerLink="/">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          
+            <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign In</a></li>
+            <li *ngIf="auth.isLoggedIn()"><a routerLink="/login">{{auth.getUserDetails()?.name}}</a></li>
+            <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout </a></li>
           </ul>
       
       </div>
     
   </div>
-
-
 </div>
-
+<router-outlet></router-outlet><!-- without this tag the routes won't be setup--->
