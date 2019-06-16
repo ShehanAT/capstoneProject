@@ -26,6 +26,8 @@ export interface TokenPayload{
     age?: string;
 }
 
+
+
 @Injectable()
 export class AuthenticationService {
     private token: string;

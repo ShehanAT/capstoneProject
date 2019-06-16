@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+      <h1>Search for images:</h1>
+      <form (submit)="sendAndGetImages()">
+        <div class="form-group">
+           <label for="tag">Enter any image tag:</label>
+             <input type="text"
+             class="form-control"
+             name="tag"
+             placeholder="Enter tag"
+             [(ngModel)]="potentialTags.tag">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    <div #galleryRef>
+      </div>
+    </div>
+</div>

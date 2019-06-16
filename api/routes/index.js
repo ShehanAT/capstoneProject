@@ -9,6 +9,8 @@ var auth = jwt({
 const ctrlProfile = require('../controllers/userProfile');
 const ctrlAuthRegister = require('../controllers/authentication').register;
 const ctrlAuthLogin = require('../controllers/authentication').login;
+const ctrlImages = 
+require('../controllers/imageController').callFlickr;
 
 //profile
 router.get('/profile', auth, ctrlProfile.profileRead);//auth is the middleware used for authentication
@@ -16,5 +18,6 @@ router.get('/profile', auth, ctrlProfile.profileRead);//auth is the middleware u
 //authentication
 router.post('/register', ctrlAuthRegister);//for sending post request to server
 router.post('/login', ctrlAuthLogin);
+router.post('/sendImageTag', ctrlImages);
 
 module.exports = router;

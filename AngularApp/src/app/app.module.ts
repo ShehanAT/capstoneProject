@@ -15,13 +15,17 @@ import {CommonService} from './common.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
+import { SearchPicsComponent } from './search-pics/search-pics.component';
+import { ImageResultComponent } from './image-result/image-result.component';
 
 
 const routes: Routes = [
     {path:'', component: HomeComponent},
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
-    {path:'profile', component: ProfileComponent}
+    {path:'profile', component: ProfileComponent},
+    {path:'imageResults', component: ImageResultComponent},
+    {path: 'searchPics', component: SearchPicsComponent}
 ]
 
 @NgModule({
@@ -31,7 +35,9 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchPicsComponent,
+    ImageResultComponent
 
   ],
   imports: [
