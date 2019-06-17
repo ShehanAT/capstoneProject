@@ -16,7 +16,8 @@ import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { SearchPicsComponent } from './search-pics/search-pics.component';
-import { ImageResultComponent } from './image-result/image-result.component';
+import { ResultComponent } from './result/result.component';
+
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
     {path:'profile', component: ProfileComponent},
-    {path:'imageResults', component: ImageResultComponent},
+    {path:'result', component: ResultComponent},
     {path: 'searchPics', component: SearchPicsComponent}
 ]
 
@@ -37,7 +38,7 @@ const routes: Routes = [
     HomeComponent,
     ProfileComponent,
     SearchPicsComponent,
-    ImageResultComponent
+    ResultComponent
 
   ],
   imports: [
