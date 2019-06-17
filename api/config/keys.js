@@ -4,3 +4,4 @@ const AZURECOMPUTERVISIONSUBSCRIPTIONKEY = "<InsertMicrosoftAzureCognitiveServic
 module.exports.flickrApiKey = flickrApiKey;
 module.exports.flickrApiSecret = flickrApiSecret;
 module.exports.AZURECOMPUTERVISIONSUBSCRIPTIONKEY = AZURECOMPUTERVISIONSUBSCRIPTIONKEY;
+ 
