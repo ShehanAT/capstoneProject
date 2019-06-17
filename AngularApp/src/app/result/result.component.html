@@ -1,6 +1,26 @@
 <app-search-pics (sendDataEvent)="recieveMessage($event)"></app-search-pics>
-<div class="container">     
-    <div #galleryRef>
+<div class="container"> 
+    <div class="ocrWords" >
+        <p>{{ wordList }}</p>
+    </div>
+    <div class="imageResults" #galleryRef>
+        <div class="row" [hidden]="!searchStart">
+           <input type="image"(click)="onClick($event)" #galleryRef1 />
+            <input type="image" (click)="onClick($event)" #galleryRef2 />
+           <input type="image" (click)="onClick($event)" #galleryRef3 />
+        </div>
+        <div class="row" [hidden]="!searchStart">
+          <input type="image" (click)="onClick($event)" #galleryRef4 />
+          <input type="image" (click)="onClick($event)" #galleryRef5 />
+          <input type="image" (click)="onClick($event)" #galleryRef6 />
+        </div>
+        <div class="row" [hidden]="!searchStart">
+          <input type="image" (click)="onClick($event)" #galleryRef7 />
+          <input type="image" (click)="onClick($event)" #galleryRef8 />
+          <input type="image" (click)="onClick($event)" #galleryRef9 />
+        </div>
+     
+        
     </div>
 </div>
 

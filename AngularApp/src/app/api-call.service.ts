@@ -14,34 +14,53 @@ export interface imageTag{
 interface flickrCallResponse{
     images: string;
 }
+interface ocrCallResponse{
+    apiData: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallService {
   private images: string;
+  private ocrData: string;
   constructor(private http: HttpClient, private router: Router) { }
   private saveImages(images: string): void{
     localStorage.setItem('mean-image', images);
     this.images = images;
   }
-  private request(method: 'post'|'get', type:'sendImageTag'|'showResult', tag?: imageTag){
+  private saveOCRData(apiData: string): void{
+    localStorage.setItem('mean-ocrData', apiData);
+    this.ocrData = apiData;
+
+  }
+  private request(method: 'post'|'get', type:'sendImageTag'|'showResult'|'sendOCRData', tag?: imageTag){
     let base;
-    if(method === 'post'){
-        base = this.http.post('/api/sendImageTag', tag);
-    }else{
-   
+    if(method === 'post' && type === 'sendOCRData'){
+        base = this.http.post('/api/sendOCRData', tag);
+        const request = base.pipe(
+            map((data: ocrCallResponse) => {
+                if(data.apiData){
+                    this.saveOCRData(data.apiData);
+                }
+                return data;
+            })
+            );
+            return request;
     }
-    
-    const request = base.pipe(
-        map((data: flickrCallResponse) => {
-            if(data.images){
-                this.saveImages(data.images);
-            }
-            return data;
-        })
-        );
-        return request;
+    else{
+        base = this.http.post('/api/sendImageTag', tag);
+        const request = base.pipe(
+            map((data: flickrCallResponse) => {
+                if(data.images){
+                    this.saveImages(data.images);
+                }
+                return data;
+            })
+            );
+            return request;
+    }
+  
         
   }
   
@@ -51,6 +70,9 @@ export class ApiCallService {
   }
   public showResults(): Observable<any>{
     return this.request('get', 'showResult');
+  }
+  public sendOCRData(imageUrl: imageTag): Observable<any>{
+    return this.request('post','sendOCRData', imageUrl);
   }
   
 }
