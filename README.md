@@ -4,7 +4,7 @@
 make a ```keys.js``` file in the ```api/config``` folder(VERY IMPORTANT)<br>
 Run ```npm install```<br>
 Open 3 terminal tabs, navigate all 2 of the 3 termial tabs to the project folder and remaining one to ```./AngularApp/src/app```<br>
-Run ```mongod```
+Run ```mongod``` on 1 terminal tab at the project level, run ```npm start``` on the other tab at the project level, and 
 
 
 
