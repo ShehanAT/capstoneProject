@@ -2,6 +2,7 @@
 
 ### Instructions:
 Add your Flickr api key and Flickr api secret to ```keys.js``` file in the ```api/config``` folder(VERY IMPORTANT)<br>
+Add your Microsoft Azure Cognitive Services Computer Vision api key to ```keys.js``` file in the ```api/config``` folder(VERY IMPORTANT)<br>
 Run ```npm install```<br>
 Open 3 terminal tabs, navigate all 2 of the 3 termial tabs to the project folder and remaining one to ```./AngularApp/src/app```<br>
 First run ```mongod``` on 1 terminal tab at the project level, then run ```npm start``` on the other tab at the project level, and finally run ```npm start``` on the tab at ```./Angular/src/app```
