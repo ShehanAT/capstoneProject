@@ -11,7 +11,7 @@ export class SearchPicsComponent implements OnInit, AfterViewInit {
     potentialTags: imageTag = {
         tag: ''
     }
-    
+    validImageCounter = 0;
     imageData: string;
 
   constructor(private apiCall: ApiCallService, private router: Router) { }
@@ -23,13 +23,22 @@ export class SearchPicsComponent implements OnInit, AfterViewInit {
  
   sendAndGetImages(){
     this.apiCall.sendImageTag(this.potentialTags).subscribe((data) => {
-        
-        
-       // console.log(this.imageData.data[0]);
-       for(var i = 0; i < 10 ; i++){
-            this.imageData = data.data[i];
-            this.sendDataEvent.emit(this.imageData)
+       
+           for(var i = 0; i < 10 ; i++){
+                if(!data.data[i]){
+                    break;
+                }
+            this.validImageCounter++;
+         }
+        this.imageData = '';
+         for(var i = 0; i < this.validImageCounter ; i++){
+            this.imageData += data.data[i] + " ";
+            
        }
+       console.log(this.imageData);
+       this.sendDataEvent.emit(this.imageData);
+       this.validImageCounter = 0;
+      
   
     
     }, (err) => {

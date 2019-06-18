@@ -49,16 +49,21 @@ export class ApiCallService {
             return request;
     }
     else{
-        base = this.http.post('/api/sendImageTag', tag);
-        const request = base.pipe(
-            map((data: flickrCallResponse) => {
+        try{
+              base = this.http.post('/api/sendImageTag', tag);
+              const request = base.pipe(
+               map((data: flickrCallResponse) => {
                 if(data.images){
                     this.saveImages(data.images);
                 }
                 return data;
-            })
-            );
+             })
+             );
             return request;
+        }catch(err){
+            console.log(err);
+        }
+      
     }
   
         

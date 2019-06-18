@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
 
+
 export interface UserDetails {
     _id: string;
     username: string;
@@ -15,12 +16,14 @@ export interface UserDetails {
 }
 
 interface TokenResponse {
-    token: string;
+    token?: string;
+    error?: string;
 }
 
 export interface TokenPayload{
     username: string;
     password: string;
+    confirmPassword?: string;
     fullName?: string;
     emailAddress?: string;
     age?: string;
@@ -33,12 +36,15 @@ export class AuthenticationService {
     private token: string;
     
     constructor(private http: HttpClient, private router: Router) { }
-    
     private saveToken(token: string): void{
         localStorage.setItem('mean-token', token);
         this.token = token;
     }
-    
+    public checkUsernameNotTaken(username: string){
+        return this.http.post('http://localhost:3000/api/checkUsernameNotTaken', {
+            username
+        });
+    }
     private getToken(): string{
         if(!this.token){
             this.token = localStorage.getItem('mean-token');
@@ -52,6 +58,7 @@ export class AuthenticationService {
         if(token){
             payload = token.split('.')[1]//split the string token and store the second parameter in payload(guessing its the password)
             payload = window.atob(payload);//decoding the password 
+            console.log(payload);
             return JSON.parse(payload);//returning the decoded password in json format
             
         }else{
@@ -60,6 +67,7 @@ export class AuthenticationService {
     }
     
     public isLoggedIn(): boolean{ //boolean is the params
+        
         const user = this.getUserDetails();
         if(user){
             return user.exp > Date.now() / 1000;//return true if session has not expired, meaning user is still logged in
@@ -83,8 +91,8 @@ export class AuthenticationService {
             map((data: TokenResponse ) => {
                 if(data.token){
                     this.saveToken(data.token);
-                }
-                return data;
+                }   
+                return data;   
             })
         );
         return request;//return json response in request variable

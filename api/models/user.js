@@ -10,17 +10,16 @@ var User = new mongoose.Schema({
 	},
 	fullName : {
 		type: String,
-		unique: true,
 		required: true,
 	},
 	age: {
 		type: Number,
-		unique: true, 
 		required: true
 	},
 	emailAddress: {
 		type: String,
-		required: true
+        unique: true,
+		required: true,
 	},
 	hash: String,
 	salt: String
@@ -38,6 +37,7 @@ User.methods.validPassword = function(password){
 }
 
 User.methods.generateJwt = function(){//generating json web token
+
 	var expiry = new Date();
 	expiry.setDate(expiry.getDate() + 7);
 

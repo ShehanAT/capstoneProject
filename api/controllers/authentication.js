@@ -7,8 +7,29 @@ var sendJSONresponse = function(res, status, content){//sending json response
     res.json(content);
 }
 
-module.exports.register = function(req, res, next){
+module.exports.checkUsernameNotTaken = function(req, res, next){
+    const username = req.body.username;
+    User.findOne({username: username})
+        .then(user => {
+            if(!user){
+                return res.json({
+                    usernameNotTaken: true
+                });
+            }else{
+                return res.json({
+                    usernameNotTaken: false
+                })
+            }
+        })
+        .catch(error => {
+            res.json({
+                usernameNotTaken: true
+            })
+        });
+    }
 
+
+module.exports.register = function(req, res, next){
     var user = new User();
   
     user.username = req.body.username;
@@ -20,17 +41,20 @@ module.exports.register = function(req, res, next){
     user.age = req.body.age;
   
     user.setPassword(req.body.password);//causing error 
-    user.save((err)=>{
+  
+  
+     user.save((err)=>{
         if(err){
-            err.status = 400;
-			return next(err);
+            console.log(err);
+            return next(err);
         }
-        var token = user.generateJwt();//generating json web token for the user object
-        res.status(200);
-        res.json({
-            "token": token
-        });
+    var token = user.generateJwt();//generating json web token for the user object, causing error
+    res.status(200);
+    res.json({
+        "token": token
     });
+    }); 
+  
 };
 
 module.exports.login = function(req, res, next){

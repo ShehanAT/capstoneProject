@@ -17,7 +17,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { SearchPicsComponent } from './search-pics/search-pics.component';
 import { ResultComponent } from './result/result.component';
-
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 
 
 const routes: Routes = [
@@ -38,7 +38,8 @@ const routes: Routes = [
     HomeComponent,
     ProfileComponent,
     SearchPicsComponent,
-    ResultComponent
+    ResultComponent,
+    ConfirmEqualValidatorDirective
 
   ],
   imports: [

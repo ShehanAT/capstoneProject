@@ -9,13 +9,14 @@ var auth = jwt({
 const ctrlProfile = require('../controllers/userProfile');
 const ctrlAuthRegister = require('../controllers/authentication').register;
 const ctrlAuthLogin = require('../controllers/authentication').login;
+const ctrlUsernameNotTaken = require('../controllers/authentication').checkUsernameNotTaken;
 const ctrlImages = 
 require('../controllers/imageController').callFlickr;
 const ctrlOCRData = require('../controllers/imageController').callOCRData;
 
 //profile
 router.get('/profile', auth, ctrlProfile.profileRead);//auth is the middleware used for authentication
-
+router.post('/checkUsernameNotTaken', ctrlUsernameNotTaken);
 //authentication
 router.post('/register', ctrlAuthRegister);//for sending post request to server
 router.post('/login', ctrlAuthLogin);

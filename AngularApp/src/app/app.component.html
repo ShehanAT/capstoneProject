@@ -7,8 +7,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign In</a></li>
-            <li *ngIf="auth.isLoggedIn()"><a routerLink="/login">{{auth.getUserDetails()?.name}}</a></li>
+            <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.username }}</a></li>
             <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout </a></li>
+            <li *ngIf="auth.isLoggedIn()"><a routerLink="/result">Use OCR(optical character recognition) to extract words from images in Flickr!</a></li>
           </ul>
       
       </div>
