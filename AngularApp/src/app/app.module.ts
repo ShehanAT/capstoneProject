@@ -18,6 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { SearchPicsComponent } from './search-pics/search-pics.component';
 import { ResultComponent } from './result/result.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
+import { UserService } from './shared/user.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CompareValidatorDirective } from './shared/compare-validator.directive';
 
 
 const routes: Routes = [
@@ -39,7 +43,10 @@ const routes: Routes = [
     ProfileComponent,
     SearchPicsComponent,
     ResultComponent,
-    ConfirmEqualValidatorDirective
+    ConfirmEqualValidatorDirective,
+    HeaderComponent,
+    FooterComponent,
+    CompareValidatorDirective
 
   ],
   imports: [
@@ -51,7 +58,8 @@ const routes: Routes = [
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

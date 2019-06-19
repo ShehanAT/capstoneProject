@@ -6,32 +6,73 @@ var sendJSONresponse = function(res, status, content){//sending json response
     res.status(status);
     res.json(content);
 }
-
-module.exports.checkUsernameNotTaken = function(req, res, next){
-    const username = req.body.username;
-    User.findOne({username: username})
-        .then(user => {
-            if(!user){
-                return res.json({
-                    usernameNotTaken: true
-                });
-            }else{
-                return res.json({
-                    usernameNotTaken: false
-                })
-            }
-        })
-        .catch(error => {
-            res.json({
-                usernameNotTaken: true
-            })
+module.exports.getAllUsers = function(req, res, next){
+    
+    User.find({})
+    .exec((err, users) =>{
+        if(err) return next(next);
+        let userData = [];
+        users.forEach((user) => {
+            userData.push({
+                username: user.username
+            });
         });
-    }
+   
+})
+}
+module.exports.checkUsernameNotTaken = function(req, res, next){
+//    const username = req.;
+//    User.findOne({username: username})
+//        .then(user => {
+//            if(!user){
+//                return res.json({
+//                    usernameNotTaken: true
+//                });
+//            }else{
+//                return res.json({
+//                    usernameNotTaken: false
+//                })
+//            }
+//        })
+//        .catch(error => {
+//            res.json({
+//                usernameNotTaken: true
+//            })
+//        });
+}
+
+module.exports.getUserByUsername = 
+    function(request, res, next){
+     User.find({})
+    .exec((err, users) =>{
+         let userData = [];
+         users.forEach((user) =>{
+             userData.push({
+                 username: user.username
+             });
+         });
+         console.log(userData);
+        console.log(request.params.uName);
+         userData.forEach((user) => {
+             if(user.username === request.params.uName){
+                  res.setHeader('Content-Type', 'application/json');
+                  return res.end(JSON.stringify({ uniqueUsername: true}));
+             }
+         })
+       
+        //user found
+       
+    }).then((data) =>{
+         console.log(data);
+         res.status(200);
+         return null;
+     })
+}
+    
 
 
 module.exports.register = function(req, res, next){
     var user = new User();
-  
     user.username = req.body.username;
          
     user.emailAddress = req.body.emailAddress;

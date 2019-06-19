@@ -40,11 +40,7 @@ export class AuthenticationService {
         localStorage.setItem('mean-token', token);
         this.token = token;
     }
-    public checkUsernameNotTaken(username: string){
-        return this.http.post('http://localhost:3000/api/checkUsernameNotTaken', {
-            username
-        });
-    }
+ 
     private getToken(): string{
         if(!this.token){
             this.token = localStorage.getItem('mean-token');
@@ -95,11 +91,13 @@ export class AuthenticationService {
                 return data;   
             })
         );
+     
         return request;//return json response in request variable
         
     }
     
     public register(user: TokenPayload): Observable<any>{
+  
         return this.request('post', 'register', user);//sending register post request to request()
     }
     

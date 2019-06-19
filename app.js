@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 //initializing passport before using the route middleware
-app.use(passport.initialize());
+app.use(passport.initialize())
 //this is the route middleware
 
 app.use('/api', routesApi);//intiashiating /api route

@@ -3,89 +3,56 @@
   <div class="col-md-6">
     <h1>Register</h1> 
     <p class="lead">If you are already a member please <a routerLink="/login">log in</a></p>
-    <form (ngSubmit)="register()"  #userForm="ngForm" >
-      <div class="form-group" [class.has-error]="usernameControl.invalid && usernameControl.touched">
-        <label for="username" class="control-label">Username:</label>
-        <input type="text" 
-               class="form-control" 
-               name="username" 
-               placeholder="Enter username"
-               [(ngModel)]="credentials.username"
-               required
-               #usernameControl="ngModel">
-          <span *ngIf="usernameControl.invalid && usernameControl.touched" class="help-block">Username is required</span>
-      </div>
-      <div class="form-group" [class.has-error]="fullNameControl.invalid && fullNameControl.touched"
-           [class.hs-success]="fullNameControl.valid">
-        <label for="fullName" class="control-label">FullName:</label>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
+        <label for="username" class="control-label">Username:
+        <input type="text" class="form-control" formControlName="username"  >
+            </label>
+        <div class="text-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+        Username already exists</div>
+   
+        <label for="fullName" class="control-label">FullName:  </label>
         <input type="text" 
                class="form-control" 
                name="fullName" 
                placeholder="Enter fullName"
-               [(ngModel)]="credentials.fullName"
                required 
-               #fullNameControl="ngModel">
-          <span *ngIf="fullNameControl.invalid && fullNameControl.touched" class="help-block">Full Name is required</span>
-      </div>
-      <div class="form-group" [class.has-error]="emailAddressControl.invalid && emailAddressControl.touched" [class.hs-success]="emailAddressControl.valid">
-        <label for="emailAddress" class="control-label">Email Address:</label>
+               formControlName="fullName">
+      
+        <label for="emailAddress" class="control-label">Email Address: </label>
         <input type="text" 
                class="form-control" 
                name="emailAddress" 
                placeholder="Enter Email"
-               [(ngModel)]="credentials.emailAddress"
-               required email
-               #emailAddressControl="ngModel">
-          <span *ngIf="emailAddressControl.errors?.required && emailAddressControl.touched" class="help-block">Email is required</span><br>
-          <span *ngIf="emailAddressControl.errors?.email && emailAddressControl.touched" class="help-block">Email is invalid</span>
-      </div>
-      <div class="form-group" [class.has-error]="ageControl.invalid && ageControl.touched" [class.hs-success]="ageControl.valid">
+               required 
+               formControlName="emailAddress"
+               >
         <label for="age" class="control-label">Age:</label>
         <input type="number" 
                class="form-control" 
                name="age" 
                placeholder="Enter Age"
-               [(ngModel)]="credentials.age"
                required
-              
-               number
-               min="0"
-               max="120"
-               name="ageInput"
-               #ageControl="ngModel">
-              <span *ngIf="ageControl.errors?.required  && ageControl.touched" class="help-block ">Age must be a number!</span>
-              <span *ngIf="ageControl.errors?.number && ageControl.touched" class="help-block ">Age must be number(0-120)</span>
-      </div>
-      <div class="form-group" [class.has-error]="passwordControl.invalid && passwordControl.touched" [class.hs-success]="passwordControl.valid">
+               formControlName="age">
+        
         <label for="password" class="control-label">Password:</label>
         <input type="password"
-               class="form-control"
-               name="password"
+                class="form-control"
                placeholder="Enter new password"
-               [(ngModel)]="credentials.password"
-                minLength="8"
-               required
-               #passwordControl="ngModel">
-            <span *ngIf="passwordControl.errors?.required && passwordControl.touched" class="help-block">Password is required</span>
-            <span *ngIf="passwordControl.errors?.minLength && passwordControl.touched" class="help-block">Password must be at least 8 characters long!
-          </span>
-      </div>
-        <div class="form-group" [class.has-error]="confirmPassword.invalid && confirmPassword.touched" [class.hs-success]="confirmPassword.valid">
+                formControlName="password">
+        
             <label for="confirmPassword" class="control-label">Confirm Password:</label>
             <input type="password"
-                   class="form-control"
-                   name="confirmPassword"
                    placeholder="confirm Password"
-                    minLength="8"
-                   required
-                   [(ngModel)]="credentials.confirmPassword"
-                   appConfirmEqualValidator="password"
-                   #confirmPassword="ngModel">
-                <span *ngIf="confirmPassword.errors?.required && confirmPassword.touched" class="help-block">Confirm Password is required</span><br>
-                <span *ngIf="confirmPassword.errors?.notEqual && confirmPassword.touched &&  !confirmPassword.errors?.required" class="help-block">Password and Confirm Password are not equal</span>
-      </div>
-              
-      <button type="submit" class="btn btn-primary" [disabled]="userForm.form.invalid">Register!</button>
+                   class="form-control"
+                  
+                formControlName="confirmPassword" compare="password"> 
+            <div class="text-danger" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+                <div *ngIf="confirmPassword.errors['required']">Confirm password is required</div>
+                <div *ngIf="confirmPassword.errors['compare']">Passwords do not match</div>
+                </div>
+      
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register!</button>
       </form>   
      </div>
     </div>
