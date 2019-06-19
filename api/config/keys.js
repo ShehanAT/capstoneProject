@@ -1,5 +1,3 @@
-
-
 const flickrApiKey = "<InsertFlickrAPIKeyHere>";
 const flickrApiSecret = "<InsertFlickrAPISecretHere>";
 const AZURECOMPUTERVISIONSUBSCRIPTIONKEY = "<InsertMicrosoftAzureCognitiveServicesComputerVisionKeyHere>";
