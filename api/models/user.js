@@ -47,7 +47,7 @@ User.methods.generateJwt = function(){//generating json web token
 		age: this.age,
 		emailAddress: this.emailAddress,
 		exp: parseInt(expiry.getTime() / 1000),
-	}, process.env.PASSWORD);
+	}, "shehan123");
 }
 
 mongoose.model('User', User);
