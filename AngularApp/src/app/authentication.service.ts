@@ -79,12 +79,13 @@ export class AuthenticationService {
             
         }else{//if not post, it is a get request
             base = this.http.get(`/api/${type}`, { headers: {Authorization: `Bearer ${this.getToken()}`}});//sending encrypted password as value
-            
+            console.log(base);
             
         }
         
         const request = base.pipe(//sending the result of the post/get request to TokenResponse interface and saving the result in it's token prop
             map((data: TokenResponse ) => {
+                
                 if(data.token){
                     this.saveToken(data.token);
                 }   

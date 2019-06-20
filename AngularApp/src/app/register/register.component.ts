@@ -15,15 +15,26 @@ import { compareValidator } from '../shared/confirm-equal-validator.directive';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  registerForm = this.fb.group({
-    username: ['', 
+    registerForm: FormGroup;
+  
+  constructor(private auth: AuthenticationService, private router: Router, private fb: FormBuilder, private userService: UserService) { }
+  
+  ngOnInit(){
+      this.createForm();
+  }
+  createForm(){
+    this.registerForm = this.fb.group({
+    username: ['', //this format must stay for uniqueness to work
         null,
-        uniqueUsernameValidator(this.userService)],
+     uniqueUsernameValidator(this.userService)
+        
+     ],
     fullName: ['',
-        Validators.required],
+        Validators.required,
+            ],
     emailAddress: ['',
-        Validators.required
+        [Validators.required,
+        Validators.email]
     ],
     age: ['',
         Validators.required],
@@ -35,15 +46,10 @@ export class RegisterComponent implements OnInit {
         compareValidator('password')]]
  
   });
-  
-  constructor(private auth: AuthenticationService, private router: Router, private fb: FormBuilder, private userService: UserService) { }
-  
-  ngOnInit(){
-    
   }
   
   get email(){
-    return this.registerForm.get('email');
+    return this.registerForm.get('emailAddress');
   }
   get username(){
     return this.registerForm.get('username');
@@ -56,6 +62,9 @@ export class RegisterComponent implements OnInit {
   }
   get confirmPassword(){
     return this.registerForm.get('confirmPassword');
+  }
+  get fullName(){
+      return this.registerForm.get('fullName');
   }
   
     

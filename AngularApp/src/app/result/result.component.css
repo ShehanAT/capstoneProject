@@ -3,3 +3,8 @@
   outline: none;
   color: aqua;
 }
+input {
+    width: 320px; /* You can set the dimensions to whatever you want */
+    height: 320px;
+    object-fit: none;
+}

@@ -7,5 +7,9 @@ import { AuthenticationService } from './authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public auth: AuthenticationService){}
+  clientHeight: number;
+  constructor(public auth: AuthenticationService){
+    this.clientHeight = window.innerHeight;
+    console.log(this.clientHeight);
+  }
 }
