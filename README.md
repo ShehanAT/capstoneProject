@@ -1,8 +1,8 @@
 # Capstone Project
 
 ### Instructions:
-* Add your Flickr api key and Flickr api secret to ```keys.js``` file in the ```api/config``` folder(VERY IMPORTANT)<br>
-* Add your Microsoft Azure Cognitive Services Computer Vision api key to ```keys.js``` file in the ```api/config``` folder(VERY IMPORTANT)<br> 
+* Add your Flickr api key and Flickr api secret to ```keys.js``` file in the ```api/config``` folder, get a key and secret [here](https://www.flickr.com/services/api/keys/apply/)
+* Add your Microsoft Azure Cognitive Services Computer Vision api key to ```keys.js``` file in the ```api/config``` folder, get an api key[here](https://azure.microsoft.com/en-ca/try/cognitive-services/)(Make sure to get a computer vision api key)
 * Add env variable named ```PASSWORD``` in the .bash_profile file(on Mac)
 * Run ```npm install```<br>
 * Open 3 terminal tabs, navigate 2 of the 3 termial tabs to the project folder and remaining one to ```./capstoneProject-master/AngularApp/src/app```<br>
