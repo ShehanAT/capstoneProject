@@ -1,6 +1,6 @@
 # Capstone Project
 
-### Instructions:
+### Instructions for running locally:
 * Add your Flickr api key and Flickr api secret to ```keys.js``` file in the ```api/config``` folder, get a key and secret [here](https://www.flickr.com/services/api/keys/apply/)
 * Add your Microsoft Azure Cognitive Services Computer Vision api key to ```keys.js``` file in the ```api/config``` folder, get an api key [here](https://azure.microsoft.com/en-ca/try/cognitive-services/) (Make sure to get a computer vision api key)
 * Run ```npm install```<br>
