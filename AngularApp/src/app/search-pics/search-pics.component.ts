@@ -35,7 +35,7 @@ export class SearchPicsComponent implements OnInit, AfterViewInit {
             this.imageData += data.data[i] + " ";
             
        }
-       console.log(this.imageData);
+     
        this.sendDataEvent.emit(this.imageData);
        this.validImageCounter = 0;
       

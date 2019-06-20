@@ -71,7 +71,7 @@ export class ResultComponent implements OnInit {
   recieveMessage($event){
     try{
        this.urls = $event.split(" ", 10);
-       console.log(this.urls.length);
+      
        if(this.urls.length === 1){
                 this.searchStatus = "No images found!";
                 this.image1show = false;

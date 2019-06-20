@@ -29,7 +29,7 @@ export class UserService {
                 const uName = user.username;
                 newUsers.push({ username: uName });
             }
-            console.log(newUsers);
+           
             return newUsers;
         }),
         tap(users => console.log(users))

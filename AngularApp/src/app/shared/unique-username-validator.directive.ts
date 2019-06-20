@@ -10,7 +10,7 @@ export function uniqueUsernameValidator(userService: UserService): AsyncValidato
     return (c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
           return userService.getUserByUsername(c.value).pipe(
         map(users => {
-            console.log(users);
+         
             if(users.length === 0){
                  return null;
             }else{

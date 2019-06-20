@@ -54,7 +54,6 @@ export class AuthenticationService {
         if(token){
             payload = token.split('.')[1]//split the string token and store the second parameter in payload(guessing its the password)
             payload = window.atob(payload);//decoding the password 
-            console.log(payload);
             return JSON.parse(payload);//returning the decoded password in json format
             
         }else{
@@ -79,7 +78,7 @@ export class AuthenticationService {
             
         }else{//if not post, it is a get request
             base = this.http.get(`/api/${type}`, { headers: {Authorization: `Bearer ${this.getToken()}`}});//sending encrypted password as value
-            console.log(base);
+          
             
         }
         

@@ -10,6 +10,5 @@ export class AppComponent {
   clientHeight: number;
   constructor(public auth: AuthenticationService){
     this.clientHeight = window.innerHeight;
-    console.log(this.clientHeight);
   }
 }
