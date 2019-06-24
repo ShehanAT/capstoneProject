@@ -1,4 +1,4 @@
-# Capstone Project
+# Capstone Project 
 
 ### Instructions for running locally:
 * Add your Flickr api key and Flickr api secret to ```keys.js``` file in the ```api/config``` folder, get a key and secret [here](https://www.flickr.com/services/api/keys/apply/)
