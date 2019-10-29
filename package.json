@@ -34,7 +34,7 @@
     "lodash": "^4.17.11",
     "logger": "0.0.1",
     "mongojs": "^2.6.0",
-    "mongoose": "^5.5.15",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
