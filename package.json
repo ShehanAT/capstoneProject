@@ -30,7 +30,7 @@
     "flickrapi": "^0.6.2",
     "https": "^1.0.0",
     "jade": "^1.11.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.11",
     "logger": "0.0.1",
     "mongojs": "^2.6.0",
